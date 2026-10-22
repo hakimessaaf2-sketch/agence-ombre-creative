@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { PageHero } from "@/components/site";
+import { EMAIL, INSTAGRAM, INSTAGRAM_HANDLE, InstagramIcon, PageHero } from "@/components/site";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -25,12 +25,22 @@ function Contact() {
       </PageHero>
       <section className="mx-auto grid max-w-7xl gap-16 px-6 py-24 md:grid-cols-[1fr_1.5fr]">
         <div className="space-y-8">
-          {[["Adresse", "Casablanca, Maroc"], ["Email", "contact@moroccomedia.ma"], ["Téléphone", "+212 5 00 00 00 00"]].map(([k, v]) => (
+          {[["Adresse", "Casablanca, Maroc"], ["Téléphone", "+212 5 00 00 00 00"]].map(([k, v]) => (
             <div key={k}>
               <p className="eyebrow">{k}</p>
               <p className="mt-2 text-xl font-semibold">{v}</p>
             </div>
           ))}
+          <div>
+            <p className="eyebrow">Email</p>
+            <a href={`mailto:${EMAIL}`} className="mt-2 inline-block text-xl font-semibold transition hover:text-primary">{EMAIL}</a>
+          </div>
+          <div>
+            <p className="eyebrow">Instagram</p>
+            <a href={INSTAGRAM} target="_blank" rel="noreferrer" className="mt-2 inline-flex items-center gap-2 text-xl font-semibold transition hover:text-primary">
+              <InstagramIcon className="h-5 w-5" /> {INSTAGRAM_HANDLE}
+            </a>
+          </div>
         </div>
         {sent ? (
           <div className="rounded-lg border border-primary bg-card p-10">
