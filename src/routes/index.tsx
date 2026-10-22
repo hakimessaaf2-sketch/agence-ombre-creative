@@ -36,6 +36,19 @@ function Index() {
         </div>
       </section>
 
+      <section className="border-y border-border bg-card py-16">
+        <p className="eyebrow text-center">Ils nous ont fait confiance</p>
+        <div className="mt-10 space-y-4">
+          <ClientMarquee items={media.clients.slice(0, 15)} />
+          <ClientMarquee items={media.clients.slice(15)} reverse />
+        </div>
+        <div className="mt-10 text-center">
+          <Link to="/references" className="inline-block rounded-md border border-border px-6 py-3 text-sm font-semibold transition hover:border-primary hover:text-primary">
+            Voir toutes nos références
+          </Link>
+        </div>
+      </section>
+
       <section className="mx-auto max-w-7xl px-6 py-24">
         <p className="eyebrow">Expertises</p>
         <h2 className="mt-3 text-4xl font-bold md:text-5xl">De la stratégie à la réalisation</h2>
@@ -47,19 +60,6 @@ function Index() {
               <p className="mt-2 text-sm text-muted-foreground">{s.d}</p>
             </div>
           ))}
-        </div>
-      </section>
-
-      <section className="border-y border-border bg-card py-16">
-        <p className="eyebrow text-center">Ils nous ont fait confiance</p>
-        <div className="mt-10 space-y-4">
-          <ClientMarquee items={media.clients.slice(0, 15)} />
-          <ClientMarquee items={media.clients.slice(15)} reverse />
-        </div>
-        <div className="mt-10 text-center">
-          <Link to="/references" className="inline-block rounded-md border border-border px-6 py-3 text-sm font-semibold transition hover:border-primary hover:text-primary">
-            Voir toutes nos références
-          </Link>
         </div>
       </section>
     </>
