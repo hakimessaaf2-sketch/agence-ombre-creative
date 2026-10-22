@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Contact details (email, Instagram URL and handle) are exported once from `src/components/site.tsx` and reused by the header, footer and contact page, so a corrected value only ever has to be changed in one place.
