@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
 import media from "@/assets/mm/media.json";
+import logoAsset from "@/assets/mm/logo.png.asset.json";
 
 const nav = [
   { to: "/a-propos", label: "À propos" },
@@ -16,7 +17,7 @@ export function Header() {
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <Link to="/" className="flex items-center gap-3">
-          <img src={media.logo[0]} alt="Morocco Media" className="h-10 rounded bg-logo-bg px-2 py-1" />
+          <img src={logoAsset.url} alt="Morocco Media" className="h-12 w-auto" />
         </Link>
         <nav className="hidden gap-8 md:flex">
           {nav.map((n) => (
