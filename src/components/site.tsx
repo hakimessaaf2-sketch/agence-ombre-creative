@@ -11,6 +11,20 @@ const nav = [
   { to: "/contact", label: "Contact" },
 ] as const;
 
+export const EMAIL = "Morocco.media17@gmail.com";
+export const INSTAGRAM = "https://www.instagram.com/moroccomedia17/";
+export const INSTAGRAM_HANDLE = "@moroccomedia17";
+
+export function InstagramIcon({ className = "h-5 w-5" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <rect x="2.5" y="2.5" width="19" height="19" rx="5.5" />
+      <circle cx="12" cy="12" r="4.2" />
+      <circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
 export function Header() {
   const [open, setOpen] = useState(false);
   return (
@@ -26,13 +40,21 @@ export function Header() {
             </Link>
           ))}
         </nav>
-        <button className="md:hidden text-foreground" onClick={() => setOpen(!open)} aria-label="Menu">☰</button>
+        <div className="flex items-center gap-4">
+          <a href={INSTAGRAM} target="_blank" rel="noreferrer" aria-label="Instagram Morocco Media" className="hidden text-muted-foreground transition hover:text-primary md:block">
+            <InstagramIcon className="h-5 w-5" />
+          </a>
+          <button className="md:hidden text-foreground" onClick={() => setOpen(!open)} aria-label="Menu">☰</button>
+        </div>
       </div>
       {open && (
         <nav className="flex flex-col gap-4 border-t border-border px-6 py-4 md:hidden">
           {nav.map((n) => (
             <Link key={n.to} to={n.to} onClick={() => setOpen(false)} className="font-semibold">{n.label}</Link>
           ))}
+          <a href={INSTAGRAM} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 font-semibold">
+            <InstagramIcon className="h-5 w-5" /> {INSTAGRAM_HANDLE}
+          </a>
         </nav>
       )}
     </header>
@@ -50,9 +72,12 @@ export function Footer() {
         <div className="flex flex-col gap-2 text-sm">
           {nav.map((n) => <Link key={n.to} to={n.to} className="text-muted-foreground hover:text-primary">{n.label}</Link>)}
         </div>
-        <div className="text-sm text-muted-foreground">
+        <div className="flex flex-col gap-2 text-sm text-muted-foreground">
           <p>Casablanca, Maroc</p>
-          <p className="mt-2">contact@moroccomedia.ma</p>
+          <a href={`mailto:${EMAIL}`} className="transition hover:text-primary">{EMAIL}</a>
+          <a href={INSTAGRAM} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 transition hover:text-primary">
+            <InstagramIcon className="h-4 w-4" /> {INSTAGRAM_HANDLE}
+          </a>
         </div>
       </div>
       <p className="border-t border-border py-4 text-center text-xs text-muted-foreground">© {new Date().getFullYear()} Morocco Media. Tous droits réservés.</p>

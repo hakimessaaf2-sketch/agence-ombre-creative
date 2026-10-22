@@ -1,5 +1,4 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import hero from "@/assets/hero.jpg";
 import media from "@/assets/mm/media.json";
 import { services } from "@/components/site";
 
@@ -18,10 +17,8 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <>
-      <section className="relative min-h-[88vh] overflow-hidden">
-        <img src={hero} alt="Événement Morocco Media" width={1600} height={912} className="absolute inset-0 h-full w-full object-cover opacity-60" />
-        <div className="absolute inset-0 bg-fade" />
-        <div className="relative mx-auto flex min-h-[88vh] max-w-7xl flex-col justify-end px-6 pb-24">
+      <section className="relative overflow-hidden border-b border-border bg-glow">
+        <div className="mx-auto flex min-h-[70vh] max-w-7xl flex-col justify-center px-6 py-24 md:py-32">
           <p className="eyebrow">Casablanca · Maroc</p>
           <h1 className="mt-4 max-w-5xl text-5xl font-extrabold leading-[1.02] md:text-8xl">
             Faites <span className="text-primary">rayonner</span> votre marque.
