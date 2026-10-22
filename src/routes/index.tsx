@@ -52,12 +52,14 @@ function Index() {
 
       <section className="border-y border-border bg-card py-16">
         <p className="eyebrow text-center">Ils nous ont fait confiance</p>
-        <div className="mx-auto mt-8 grid max-w-7xl grid-cols-3 gap-4 px-6 md:grid-cols-6">
-          {media.clients.slice(0, 12).map((u) => (
-            <div key={u} className="flex h-20 items-center justify-center rounded bg-logo-bg p-3">
-              <img src={u} alt="Client" loading="lazy" className="max-h-full max-w-full object-contain" />
-            </div>
-          ))}
+        <div className="mt-10 space-y-4">
+          <ClientMarquee items={media.clients.slice(0, 15)} />
+          <ClientMarquee items={media.clients.slice(15)} reverse />
+        </div>
+        <div className="mt-10 text-center">
+          <Link to="/references" className="inline-block rounded-md border border-border px-6 py-3 text-sm font-semibold transition hover:border-primary hover:text-primary">
+            Voir toutes nos références
+          </Link>
         </div>
       </section>
     </>
