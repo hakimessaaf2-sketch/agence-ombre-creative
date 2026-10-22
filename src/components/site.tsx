@@ -72,10 +72,10 @@ export function Footer() {
         <div className="flex flex-col gap-2 text-sm">
           {nav.map((n) => <Link key={n.to} to={n.to} className="text-muted-foreground hover:text-primary">{n.label}</Link>)}
         </div>
-        <div className="text-sm text-muted-foreground">
+        <div className="flex flex-col gap-2 text-sm text-muted-foreground">
           <p>Casablanca, Maroc</p>
-          <a href={`mailto:${EMAIL}`} className="mt-2 inline-block transition hover:text-primary">{EMAIL}</a>
-          <a href={INSTAGRAM} target="_blank" rel="noreferrer" className="mt-3 inline-flex items-center gap-2 transition hover:text-primary">
+          <a href={`mailto:${EMAIL}`} className="transition hover:text-primary">{EMAIL}</a>
+          <a href={INSTAGRAM} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 transition hover:text-primary">
             <InstagramIcon className="h-4 w-4" /> {INSTAGRAM_HANDLE}
           </a>
         </div>
