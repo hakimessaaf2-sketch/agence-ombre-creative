@@ -2,6 +2,10 @@ import { Link } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
 import media from "@/assets/mm/media.json";
 import logoAsset from "@/assets/mm/logo.png.asset.json";
+import hero from "@/assets/hero.jpg";
+import p1 from "@/assets/p1.jpg";
+import p2 from "@/assets/p2.jpg";
+import p3 from "@/assets/p3.jpg";
 
 const nav = [
   { to: "/a-propos", label: "À propos" },
@@ -107,4 +111,11 @@ export const services = [
   { t: "Media Buying", d: "Achat d’espaces optimisé en TV, radio, presse, affichage et digital." },
   { t: "Brand Activation & Roadshow", d: "Des activations terrain qui rapprochent votre marque de son public." },
   { t: "Artist & Talent Management", d: "Management d’artistes et de talents, partenariats et booking." },
+];
+
+export const projects = [
+  { img: p1, cat: "Lancement de produit", t: "Lancement smartphone", d: "Mise en scène, presse et influenceurs pour un lancement high-tech." },
+  { img: p2, cat: "Brand Activation & Roadshow", t: "Roadshow national", d: "Une tournée dans les grandes villes du Royaume au plus près du public." },
+  { img: p3, cat: "Relations presse", t: "Conférence de presse", d: "Organisation et couverture médiatique d’une annonce officielle." },
+  { img: hero, cat: "Événement corporate", t: "Gala d’entreprise", d: "Scénographie, accueil des invités et production audiovisuelle." },
 ];

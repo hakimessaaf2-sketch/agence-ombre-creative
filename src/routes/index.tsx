@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import media from "@/assets/mm/media.json";
-import { services } from "@/components/site";
+import { projects, services } from "@/components/site";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -59,7 +59,62 @@ function Index() {
           ))}
         </div>
       </section>
+
+      <section className="border-t border-border bg-card py-24">
+        <div className="mx-auto max-w-7xl px-6">
+          <p className="eyebrow">Projets / Events</p>
+          <h2 className="mt-3 text-4xl font-bold md:text-5xl">Nos réalisations</h2>
+          <div className="mt-12 grid gap-8 md:grid-cols-2">
+            {projects.map((p) => (
+              <article key={p.t} className="group overflow-hidden rounded-lg border border-border bg-background">
+                <div className="aspect-[4/3] overflow-hidden">
+                  <img src={p.img} alt={p.t} loading="lazy" className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+                </div>
+                <div className="p-8">
+                  <p className="eyebrow">{p.cat}</p>
+                  <h3 className="mt-2 text-2xl font-bold">{p.t}</h3>
+                  <p className="mt-2 text-muted-foreground">{p.d}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+          <div className="mt-12 text-center">
+            <Link to="/projets" className="inline-block rounded-md border border-border px-6 py-3 text-sm font-semibold transition hover:border-primary hover:text-primary">
+              Voir tous nos projets
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 py-24">
+        <p className="eyebrow">Artistes / Influenceurs</p>
+        <h2 className="mt-3 text-4xl font-bold md:text-5xl">Nos talents</h2>
+        <div className="mt-12 space-y-12">
+          <PhotoRow title="Artistes" items={media.artists} />
+          <PhotoRow title="Influenceurs" items={media.influencers} />
+        </div>
+        <div className="mt-12 text-center">
+          <Link to="/references" className="inline-block rounded-md border border-border px-6 py-3 text-sm font-semibold transition hover:border-primary hover:text-primary">
+            Découvrir toutes nos références
+          </Link>
+        </div>
+      </section>
     </>
+  );
+}
+
+function PhotoRow({ title, items }: { title: string; items: string[] }) {
+  return (
+    <div>
+      <h3 className="text-xl font-bold">{title}</h3>
+      <div className="mt-5 grid grid-cols-3 gap-4 md:grid-cols-6">
+        {items.map((u) => (
+          <div key={u} className="aspect-[3/4] overflow-hidden rounded-lg border border-border">
+            <img src={u} alt={title} loading="lazy" className="h-full w-full object-cover grayscale transition duration-500 hover:scale-105 hover:grayscale-0" />
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
 

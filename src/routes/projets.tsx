@@ -1,9 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { PageHero } from "@/components/site";
-import hero from "@/assets/hero.jpg";
-import p1 from "@/assets/p1.jpg";
-import p2 from "@/assets/p2.jpg";
-import p3 from "@/assets/p3.jpg";
+import { PageHero, projects } from "@/components/site";
 
 export const Route = createFileRoute("/projets")({
   head: () => ({
@@ -17,12 +13,6 @@ export const Route = createFileRoute("/projets")({
   component: Projects,
 });
 
-const projects = [
-  { img: p1, cat: "Lancement de produit", t: "Lancement smartphone", d: "Mise en scène, presse et influenceurs pour un lancement high-tech." },
-  { img: p2, cat: "Brand Activation & Roadshow", t: "Roadshow national", d: "Une tournée dans les grandes villes du Royaume au plus près du public." },
-  { img: p3, cat: "Relations presse", t: "Conférence de presse", d: "Organisation et couverture médiatique d’une annonce officielle." },
-  { img: hero, cat: "Événement corporate", t: "Gala d’entreprise", d: "Scénographie, accueil des invités et production audiovisuelle." },
-];
 
 function Projects() {
   return (
