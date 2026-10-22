@@ -65,3 +65,36 @@ function Index() {
     </>
   );
 }
+
+function ClientMarquee({ items, reverse = false }: { items: string[]; reverse?: boolean }) {
+  const group = (copy: number) => (
+    <div className="marquee-group" aria-hidden={copy > 0 ? true : undefined}>
+      {items.map((u) => (
+        <div
+          key={`${copy}-${u}`}
+          className="flex h-20 w-32 shrink-0 items-center justify-center rounded bg-logo-bg p-3"
+        >
+          <img
+            src={u}
+            alt={copy === 0 ? "Logo client" : ""}
+            loading={copy === 0 ? "eager" : "lazy"}
+            className="max-h-full max-w-full object-contain"
+          />
+        </div>
+      ))}
+    </div>
+  );
+
+  return (
+    <div className="marquee">
+      <div
+        className="marquee-track"
+        data-dir={reverse ? "right" : "left"}
+        style={{ animationDuration: reverse ? "60s" : "45s" }}
+      >
+        {group(0)}
+        {group(1)}
+      </div>
+    </div>
+  );
+}
