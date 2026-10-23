@@ -1,7 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
 import media from "@/assets/mm/media.json";
-import logoAsset from "@/assets/mm/logo.png.asset.json";
 import hero from "@/assets/hero.jpg";
 import p1 from "@/assets/p1.jpg";
 import p2 from "@/assets/p2.jpg";
@@ -35,7 +34,7 @@ export function Header() {
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <Link to="/" className="flex items-center gap-3">
-          <img src={logoAsset.url} alt="Morocco Media" className="h-12 w-auto" />
+          <img src="/images/logo.png" alt="Morocco Media" className="h-12 w-auto" />
         </Link>
         <nav className="hidden gap-8 md:flex">
           {nav.map((n) => (
