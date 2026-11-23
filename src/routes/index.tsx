@@ -1,20 +1,28 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import media from "@/assets/mm/media.json";
 import { projects, services } from "@/components/site";
+import { useProjects } from "@/lib/projects";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Morocco Media — Communication, PR & Événementiel" },
-      { name: "description", content: "Agence de communication, relations presse et événementiel basée à Casablanca." },
+      {
+        name: "description",
+        content: "Agence de communication, relations presse et événementiel basée à Casablanca.",
+      },
       { property: "og:title", content: "Morocco Media — Communication, PR & Événementiel" },
-      { property: "og:description", content: "Agence de communication, relations presse et événementiel basée à Casablanca." },
+      {
+        property: "og:description",
+        content: "Agence de communication, relations presse et événementiel basée à Casablanca.",
+      },
     ],
   }),
   component: Index,
 });
 
 function Index() {
+  const { projects: liveProjects } = useProjects();
   return (
     <>
       <section className="relative overflow-hidden border-b border-border bg-glow">
@@ -24,11 +32,22 @@ function Index() {
             Faites <span className="text-primary">rayonner</span> votre marque.
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
-            Communication stratégique, relations presse, événements et lancements de produits pour les marques nationales et internationales.
+            Communication stratégique, relations presse, événements et lancements de produits pour
+            les marques nationales et internationales.
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
-            <Link to="/contact" className="rounded-md bg-primary px-7 py-3 font-semibold text-primary-foreground transition hover:opacity-90">Parlons de votre projet</Link>
-            <Link to="/services" className="rounded-md border border-border px-7 py-3 font-semibold transition hover:border-primary">Nos services</Link>
+            <Link
+              to="/contact"
+              className="rounded-md bg-primary px-7 py-3 font-semibold text-primary-foreground transition hover:opacity-90"
+            >
+              Parlons de votre projet
+            </Link>
+            <Link
+              to="/services"
+              className="rounded-md border border-border px-7 py-3 font-semibold transition hover:border-primary"
+            >
+              Nos services
+            </Link>
           </div>
         </div>
       </section>
@@ -40,7 +59,10 @@ function Index() {
           <ClientMarquee items={media.clients.slice(15)} reverse />
         </div>
         <div className="mt-10 text-center">
-          <Link to="/references" className="inline-block rounded-md border border-border px-6 py-3 text-sm font-semibold transition hover:border-primary hover:text-primary">
+          <Link
+            to="/references"
+            className="inline-block rounded-md border border-border px-6 py-3 text-sm font-semibold transition hover:border-primary hover:text-primary"
+          >
             Voir toutes nos références
           </Link>
         </div>
@@ -65,21 +87,34 @@ function Index() {
           <p className="eyebrow">Projets / Events</p>
           <h2 className="mt-3 text-4xl font-bold md:text-5xl">Nos réalisations</h2>
           <div className="mt-12 grid gap-8 md:grid-cols-2">
-            {projects.map((p) => (
-              <article key={p.t} className="group overflow-hidden rounded-lg border border-border bg-background">
+            {(liveProjects.length ? liveProjects : projects).map((p) => (
+              <article
+                key={"title" in p ? p.title : p.t}
+                className="group overflow-hidden rounded-lg border border-border bg-background"
+              >
                 <div className="aspect-[4/3] overflow-hidden">
-                  <img src={p.img} alt={p.t} loading="lazy" className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+                  <img
+                    src={"image" in p ? p.image : p.img}
+                    alt={"title" in p ? p.title : p.t}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                  />
                 </div>
                 <div className="p-8">
-                  <p className="eyebrow">{p.cat}</p>
-                  <h3 className="mt-2 text-2xl font-bold">{p.t}</h3>
-                  <p className="mt-2 text-muted-foreground">{p.d}</p>
+                  <p className="eyebrow">{"category" in p ? p.category : p.cat}</p>
+                  <h3 className="mt-2 text-2xl font-bold">{"title" in p ? p.title : p.t}</h3>
+                  <p className="mt-2 text-muted-foreground">
+                    {"description" in p ? p.description : p.d}
+                  </p>
                 </div>
               </article>
             ))}
           </div>
           <div className="mt-12 text-center">
-            <Link to="/projets" className="inline-block rounded-md border border-border px-6 py-3 text-sm font-semibold transition hover:border-primary hover:text-primary">
+            <Link
+              to="/projets"
+              className="inline-block rounded-md border border-border px-6 py-3 text-sm font-semibold transition hover:border-primary hover:text-primary"
+            >
               Voir tous nos projets
             </Link>
           </div>
@@ -94,7 +129,10 @@ function Index() {
           <PhotoRow title="Influenceurs" items={media.influencers} />
         </div>
         <div className="mt-12 text-center">
-          <Link to="/references" className="inline-block rounded-md border border-border px-6 py-3 text-sm font-semibold transition hover:border-primary hover:text-primary">
+          <Link
+            to="/references"
+            className="inline-block rounded-md border border-border px-6 py-3 text-sm font-semibold transition hover:border-primary hover:text-primary"
+          >
             Découvrir toutes nos références
           </Link>
         </div>
@@ -110,7 +148,12 @@ function PhotoRow({ title, items }: { title: string; items: string[] }) {
       <div className="mt-5 grid grid-cols-3 gap-4 md:grid-cols-6">
         {items.map((u) => (
           <div key={u} className="aspect-[3/4] overflow-hidden rounded-lg border border-border">
-            <img src={u} alt={title} loading="lazy" className="h-full w-full object-cover grayscale transition duration-500 hover:scale-105 hover:grayscale-0" />
+            <img
+              src={u}
+              alt={title}
+              loading="lazy"
+              className="h-full w-full object-cover grayscale transition duration-500 hover:scale-105 hover:grayscale-0"
+            />
           </div>
         ))}
       </div>

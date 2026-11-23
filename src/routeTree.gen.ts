@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AProposRouteImport } from './routes/a-propos'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ProjetsRouteImport } from './routes/projets'
 import { Route as ReferencesRouteImport } from './routes/references'
@@ -24,6 +25,11 @@ const IndexRoute = IndexRouteImport.update({
 const AProposRoute = AProposRouteImport.update({
   id: '/a-propos',
   path: '/a-propos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -50,6 +56,7 @@ const ServicesRoute = ServicesRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/a-propos': typeof AProposRoute
+  '/admin': typeof AdminRoute
   '/contact': typeof ContactRoute
   '/projets': typeof ProjetsRoute
   '/references': typeof ReferencesRoute
@@ -58,6 +65,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/a-propos': typeof AProposRoute
+  '/admin': typeof AdminRoute
   '/contact': typeof ContactRoute
   '/projets': typeof ProjetsRoute
   '/references': typeof ReferencesRoute
@@ -67,6 +75,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/a-propos': typeof AProposRoute
+  '/admin': typeof AdminRoute
   '/contact': typeof ContactRoute
   '/projets': typeof ProjetsRoute
   '/references': typeof ReferencesRoute
@@ -75,13 +84,27 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/a-propos' | '/contact' | '/projets' | '/references' | '/services'
+    | '/'
+    | '/a-propos'
+    | '/admin'
+    | '/contact'
+    | '/projets'
+    | '/references'
+    | '/services'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/a-propos' | '/contact' | '/projets' | '/references' | '/services'
+  to:
+    | '/'
+    | '/a-propos'
+    | '/admin'
+    | '/contact'
+    | '/projets'
+    | '/references'
+    | '/services'
   id:
     | '__root__'
     | '/'
     | '/a-propos'
+    | '/admin'
     | '/contact'
     | '/projets'
     | '/references'
@@ -91,6 +114,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AProposRoute: typeof AProposRoute
+  AdminRoute: typeof AdminRoute
   ContactRoute: typeof ContactRoute
   ProjetsRoute: typeof ProjetsRoute
   ReferencesRoute: typeof ReferencesRoute
@@ -111,6 +135,13 @@ declare module '@tanstack/react-router' {
       path: '/a-propos'
       fullPath: '/a-propos'
       preLoaderRoute: typeof AProposRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -147,6 +178,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AProposRoute: AProposRoute,
+  AdminRoute: AdminRoute,
   ContactRoute: ContactRoute,
   ProjetsRoute: ProjetsRoute,
   ReferencesRoute: ReferencesRoute,
